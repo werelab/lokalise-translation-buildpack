@@ -6,7 +6,9 @@ env_dir=$3
 whitelist_regex=${2:-'^(LOKALISE_PROJECT_ID|LOKALISE_API_TOKEN)$'}
 blacklist_regex=${3:-''}
 if [ -d "$env_dir" ]; then
+  echo "-----> Exporting environmental variables"
   for e in $(ls $env_dir); do
+    echo "       Checking $e"
     echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
     export "$e=$(cat $env_dir/$e)"
     :
