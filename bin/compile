@@ -8,7 +8,7 @@ if [ -d "$env_dir" ]; then
   echo "-----> Exporting environmental variables"
   for e in $(ls $env_dir); do
     echo "1. $e"
-    echo "2. $e" | grep -E "$whitelist_regex"
+    echo "$e" | grep -E "$whitelist_regex"
     echo "$e" | grep -E "$whitelist_regex" && export "$e=$(cat $env_dir/$e)"
     :
   done
